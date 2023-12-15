@@ -2,7 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="list-group">
+    <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" asp-area="" asp-controller="WeatherForecast" asp-action="Index">
+        Просмотр архивов погодных условий в городе Москве.
+    </a>
+    <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" asp-area="" asp-controller="WeatherForecast" asp-action="Insert">
+        Загрузка архивов погодных условий в городе Москве.
+    </a>
 </div>
