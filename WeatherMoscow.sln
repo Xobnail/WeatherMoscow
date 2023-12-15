@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMoscow.Host", "WeatherMoscow.Host\WeatherMoscow.Host.csproj", "{D4E38BE6-812C-4F79-949B-23D5BAC3F8B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMoscow.PostgreSQL", "WeatherMoscow.PostgreSQL\WeatherMoscow.PostgreSQL.csproj", "{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMoscow.Domain", "WeatherMoscow.Domain\WeatherMoscow.Domain.csproj", "{3F93A83C-7549-4753-A225-23DF93030297}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{D4E38BE6-812C-4F79-949B-23D5BAC3F8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4E38BE6-812C-4F79-949B-23D5BAC3F8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4E38BE6-812C-4F79-949B-23D5BAC3F8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F93A83C-7549-4753-A225-23DF93030297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F93A83C-7549-4753-A225-23DF93030297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F93A83C-7549-4753-A225-23DF93030297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F93A83C-7549-4753-A225-23DF93030297}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -6,4 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WeatherMoscow.PostgreSQL\WeatherMoscow.PostgreSQL.csproj" />
+    </ItemGroup>
+
 </Project>

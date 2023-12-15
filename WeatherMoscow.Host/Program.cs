@@ -1,7 +1,10 @@
+using WeatherMoscow.PostgreSQL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDatabase(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 var app = builder.Build();
 
