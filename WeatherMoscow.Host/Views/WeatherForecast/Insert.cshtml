@@ -1,1 +1,7 @@
-insert
+<form method="post" enctype="multipart/form-data" asp-controller="WeatherForecast" asp-action="UploadFiles">
+    <span>Select Files:</span>
+    <input type="file" name="files" multiple />
+    <input type="submit" value="Upload" />
+    <br/>
+    <span>@Html.Raw(ViewBag.Message)</span>
+</form>
