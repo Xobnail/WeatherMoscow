@@ -8,10 +8,10 @@ namespace WeatherMoscow.PostgreSQL;
 /// </summary>
 public class AppDbContext : DbContext
 {
+    public DbSet<WeatherForecast> WeatherForecasts { get; set; }
+    
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
     {
         Database.EnsureCreated();
     }
-
-    public DbSet<WeatherForecast> WeatherForecasts;
 }
