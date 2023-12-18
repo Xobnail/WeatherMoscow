@@ -19,7 +19,9 @@ public class WeatherForecastController : Controller
     
     public IActionResult Index()
     {
-        return View();
+        var weatherForecasts = _weatherForecastRepository.GetAll();
+        
+        return View(weatherForecasts);
     }
 
     public IActionResult Insert()

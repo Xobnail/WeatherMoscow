@@ -1,3 +1,5 @@
+@model IEnumerable<WeatherForecast>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -16,6 +18,22 @@
         </tr>
     </thead>
     <tbody>
-        
+        @foreach (var weatherForecast in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(wf => weatherForecast.Date)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.Time)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.Temperature)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.RelativeHumidity)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.DewPoint)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.AtmospherePressure)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.WindDirection)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.WindSpeed)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.Cloudiness)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.CloudCeiling)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.HorizontalVisibility)</td>
+                <td>@Html.DisplayFor(wf => weatherForecast.WeatherEvents)</td>
+            </tr>
+        }
     </tbody>
 </table>

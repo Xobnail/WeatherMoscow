@@ -22,14 +22,14 @@ public class WeatherForecastRepository : IWeatherForecastRepository
         _environment = environment;
         _dbContext = dbContext;
     }
-    
+
     /// <summary>
     /// Gets all Weather forecasts
     /// </summary>
     /// <returns>IEnumerable<WeatherForecast></returns>
     public IEnumerable<WeatherForecast> GetAll()
     {
-        throw new NotImplementedException();
+        return _dbContext.WeatherForecasts.ToList();
     }
 
     /// <summary>
