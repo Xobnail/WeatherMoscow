@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using WeatherMoscow.Domain.Abstractions;
 
 namespace WeatherMoscow.PostgreSQL;
 
@@ -16,6 +17,7 @@ public static class Entry
     /// <returns>IServiceCollection</returns>
     public static IServiceCollection AddDatabase(this IServiceCollection services, string connectionString)
     {
+        services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
         return services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
     }
 }
