@@ -1,4 +1,5 @@
-﻿using WeatherMoscow.Domain.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using WeatherMoscow.Domain.Entities;
 
 namespace WeatherMoscow.Domain.Abstractions;
 
@@ -18,5 +19,5 @@ public interface IWeatherForecastRepository
     /// </summary>
     /// <param name="weatherForecasts">Forecast to load</param>
     /// <returns>true if loaded, false if not</returns>
-    public bool Load(IEnumerable<WeatherForecast> weatherForecasts);
+    public bool Load(IFormFileCollection weatherForecasts);
 }

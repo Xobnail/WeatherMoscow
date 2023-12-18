@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMoscow.PostgreSQL", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMoscow.Domain", "WeatherMoscow.Domain\WeatherMoscow.Domain.csproj", "{3F93A83C-7549-4753-A225-23DF93030297}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD7F24C1-3628-4143-846B-7D56372EDA33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,10 @@ Global
 		{3F93A83C-7549-4753-A225-23DF93030297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F93A83C-7549-4753-A225-23DF93030297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F93A83C-7549-4753-A225-23DF93030297}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F93A83C-7549-4753-A225-23DF93030297} = {FD7F24C1-3628-4143-846B-7D56372EDA33}
+		{D4E38BE6-812C-4F79-949B-23D5BAC3F8B6} = {FD7F24C1-3628-4143-846B-7D56372EDA33}
+		{F8C59798-B8B1-42AC-A2BB-E09C1A5007CC} = {FD7F24C1-3628-4143-846B-7D56372EDA33}
 	EndGlobalSection
 EndGlobal

@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using WeatherMoscow.Domain.Abstractions;
 
 namespace WeatherMoscow.Host.Controllers;
 
 public class WeatherForecastController : Controller
 {
     private readonly IWebHostEnvironment _environment;
+    private readonly IWeatherForecastRepository _weatherForecastRepository;
  
-    public WeatherForecastController(IWebHostEnvironment environment)
+    public WeatherForecastController(
+        IWebHostEnvironment environment, 
+        IWeatherForecastRepository weatherForecastRepository)
     {
         _environment = environment;
+        _weatherForecastRepository = weatherForecastRepository;
     }
     
     public IActionResult Index()
@@ -25,25 +30,8 @@ public class WeatherForecastController : Controller
     [HttpPost]
     public IActionResult UploadFiles(IFormFileCollection files)
     {
-        var wwwrootPath = _environment.WebRootPath;
- 
-        var path = Path.Combine(wwwrootPath, "Uploads");
-        
-        if (!Directory.Exists(path))
-        {
-            Directory.CreateDirectory(path);
-        }
- 
-        foreach (var file in files)
-        {
-            var fileName = Path.GetFileName(file.FileName);
-            using (var stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
-            {
-                file.CopyTo(stream);
-                ViewBag.Message += $"<b>{fileName}</b> uploaded.<br />";
-            }
-        }
- 
+        _weatherForecastRepository.Load(files);
+
         return View("Insert");
     }
 }
