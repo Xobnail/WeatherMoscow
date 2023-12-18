@@ -12,7 +12,7 @@ public interface IWeatherForecastRepository
     /// Gets all Weather forecasts
     /// </summary>
     /// <returns>IEnumerable<WeatherForecast></returns>
-    public IEnumerable<WeatherForecast> GetAll();
+    public IndexViewModel GetPage(string monthFilter, string yearFilter, int page);
 
     /// <summary>
     /// Load Weather forecasts

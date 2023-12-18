@@ -27,9 +27,33 @@ public class WeatherForecastRepository : IWeatherForecastRepository
     /// Gets all Weather forecasts
     /// </summary>
     /// <returns>IEnumerable<WeatherForecast></returns>
-    public IEnumerable<WeatherForecast> GetAll()
+    public IndexViewModel GetPage(string monthFilter, string yearFilter, int page)
     {
-        return _dbContext.WeatherForecasts.ToList();
+        const int pageSize = 10;
+
+        var source = _dbContext.WeatherForecasts.AsQueryable();
+
+        if (!string.IsNullOrEmpty(monthFilter))
+        {
+            source = source.Where(wf => wf.Date.Month.ToString().Contains(monthFilter));
+        }
+        
+        if (!string.IsNullOrEmpty(yearFilter))
+        {
+            source = source.Where(wf => wf.Date.Year.ToString().Contains(yearFilter));
+        }
+        
+        var count = source.Count();
+        var items = source.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+ 
+        var pageViewModel = new PageViewModel(count, page, pageSize);
+        var viewModel = new IndexViewModel
+        {
+            PageViewModel = pageViewModel,
+            WeatherForecasts = items
+        };
+        
+        return viewModel;
     }
 
     /// <summary>

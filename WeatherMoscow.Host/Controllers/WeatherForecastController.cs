@@ -17,9 +17,20 @@ public class WeatherForecastController : Controller
         _weatherForecastRepository = weatherForecastRepository;
     }
     
-    public IActionResult Index()
+    public IActionResult Index(string? monthFilter, string currentMonthFilter, string? yearFilter, string currentYearFilter, int page = 1)
     {
-        var weatherForecasts = _weatherForecastRepository.GetAll();
+        if (monthFilter != null || yearFilter != null)
+        {
+            page = 1;
+        }
+
+        monthFilter ??= currentMonthFilter;
+        yearFilter ??= currentYearFilter;
+        
+        ViewData["currentMonthFilter"] = monthFilter;
+        ViewData["currentYearFilter"] = yearFilter;
+
+        var weatherForecasts = _weatherForecastRepository.GetPage(monthFilter, yearFilter, page);
         
         return View(weatherForecasts);
     }
