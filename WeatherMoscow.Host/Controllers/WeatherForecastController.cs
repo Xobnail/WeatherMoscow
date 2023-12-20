@@ -6,18 +6,14 @@ namespace WeatherMoscow.Host.Controllers;
 
 public class WeatherForecastController : Controller
 {
-    private readonly IWebHostEnvironment _environment;
     private readonly IWeatherForecastRepository _weatherForecastRepository;
  
-    public WeatherForecastController(
-        IWebHostEnvironment environment, 
-        IWeatherForecastRepository weatherForecastRepository)
+    public WeatherForecastController(IWeatherForecastRepository weatherForecastRepository)
     {
-        _environment = environment;
         _weatherForecastRepository = weatherForecastRepository;
     }
     
-    public IActionResult Index(string? monthFilter, string currentMonthFilter, string? yearFilter, string currentYearFilter, int page = 1)
+    public async Task<IActionResult> Index(string? monthFilter, string currentMonthFilter, string? yearFilter, string currentYearFilter, int page = 1)
     {
         if (monthFilter != null || yearFilter != null)
         {
@@ -30,7 +26,14 @@ public class WeatherForecastController : Controller
         ViewData["currentMonthFilter"] = monthFilter;
         ViewData["currentYearFilter"] = yearFilter;
 
-        var weatherForecasts = _weatherForecastRepository.GetPage(monthFilter, yearFilter, page);
+        var weatherForecasts = await _weatherForecastRepository.GetPageAsync(monthFilter, yearFilter, page);
+
+        if (!weatherForecasts.WeatherForecasts.Any())
+        {
+            ViewData["errorMessage"] = "Нет данных.";
+
+            return View(weatherForecasts);
+        }
         
         return View(weatherForecasts);
     }
@@ -41,9 +44,21 @@ public class WeatherForecastController : Controller
     }
 
     [HttpPost]
-    public IActionResult UploadFiles(IFormFileCollection files)
+    public async Task<IActionResult> UploadFiles(IFormFileCollection files)
     {
-        _weatherForecastRepository.Load(files);
+        try
+        {
+            await _weatherForecastRepository.LoadAsync(files);
+            ViewData["uploadStatus"] = "Файлы загружены.";
+        }
+        catch (ArgumentNullException)
+        {
+            ViewData["uploadStatus"] = "Пустые файлы!";
+        }
+        catch (Exception)
+        {
+            ViewData["uploadStatus"] = "Файл не подлежит загрузке.";
+        }
 
         return View("Insert");
     }
