@@ -83,8 +83,9 @@ public class WeatherForecastRepository : IWeatherForecastRepository
             LoadFromFileToList(file, weatherForecasts);
 
             await _dbContext.WeatherForecasts.AddRangeAsync(weatherForecasts);
-            await _dbContext.SaveChangesAsync();
         }
+        
+        await _dbContext.SaveChangesAsync();
     }
 
     private static void LoadFromFileToList(IFormFile file, List<WeatherForecast> weatherForecasts)

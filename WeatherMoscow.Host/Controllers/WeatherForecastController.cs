@@ -13,6 +13,7 @@ public class WeatherForecastController : Controller
         _weatherForecastRepository = weatherForecastRepository;
     }
     
+    [HttpGet]
     public async Task<IActionResult> Index(string? monthFilter, string currentMonthFilter, string? yearFilter, string currentYearFilter, int page = 1)
     {
         if (monthFilter != null || yearFilter != null)
@@ -38,6 +39,7 @@ public class WeatherForecastController : Controller
         return View(weatherForecasts);
     }
 
+    [HttpGet]
     public IActionResult Insert()
     {
         return View();
