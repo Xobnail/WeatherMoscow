@@ -1,17 +1,45 @@
 @model IndexViewModel
 
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Месяц: <input type="text" name="monthFilter" value="@ViewData["CurrentMonthFilter"]"/>
-            Год: <input type="text" name="yearFilter" value="@ViewData["CurrentYearFilter"]"/>
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
-        </p>
+<div style="display: flex; justify-content: space-between;">
+    <div>
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Месяц: <input type="text" name="monthFilter" value="@ViewData["CurrentMonthFilter"]"/>
+                    Год: <input type="text" name="yearFilter" value="@ViewData["CurrentYearFilter"]"/>
+                    <input type="submit" value="Поиск" class="btn btn-outline-primary" /> |
+                    <a asp-action="Index">Отмена</a>
+                </p>
+            </div>
+        </form>
     </div>
-</form>
+    <div>
+        @if (Model.PageViewModel.HasPreviousPage)
+        {
+            <a asp-action="Index"
+               asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+               asp-route-currentMonthFilter="@ViewData["currentMonthFilter"]"
+               asp-route-currentYearFilter="@ViewData["currentYearFilter"]"
+               class="btn btn-outline-dark">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                Назад
+            </a>
+        }
+        @if (Model.PageViewModel.HasNextPage)
+        {
+            <a asp-action="Index"
+               asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+               asp-route-currentMonthFilter="@ViewData["currentMonthFilter"]"
+               asp-route-currentYearFilter="@ViewData["currentYearFilter"]"
+               class="btn btn-outline-dark">
+                Вперед
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        }
+    </div>
+</div>
 
-<table class="table table-bordered">
+<table class="table table-striped">
     <thead>
     <tr>
         <th>Дата</th>
@@ -31,7 +59,7 @@
     <tbody>
     @foreach (var weatherForecast in Model.WeatherForecasts)
     {
-        <tr>
+        <tr style="height: 60px;">
             <td>@Html.DisplayFor(wf => weatherForecast.Date)</td>
             <td>@Html.DisplayFor(wf => weatherForecast.Time)</td>
             <td>@Html.DisplayFor(wf => weatherForecast.Temperature)</td>
@@ -50,26 +78,3 @@
 </table>
 
 <h3>@ViewData["errorMessage"]</h3>
-
-@if (Model.PageViewModel.HasPreviousPage)
-{
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-       asp-route-currentMonthFilter="@ViewData["currentMonthFilter"]"
-       asp-route-currentYearFilter="@ViewData["currentYearFilter"]"
-       class="btn btn-outline-dark">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-        Назад
-    </a>
-}
-@if (Model.PageViewModel.HasNextPage)
-{
-    <a asp-action="Index"
-       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-       asp-route-currentMonthFilter="@ViewData["currentMonthFilter"]"
-       asp-route-currentYearFilter="@ViewData["currentYearFilter"]"
-       class="btn btn-outline-dark">
-        Вперед
-        <i class="glyphicon glyphicon-chevron-right"></i>
-    </a>
-}

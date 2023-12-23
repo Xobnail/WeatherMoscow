@@ -1,7 +1,7 @@
 <form method="post" enctype="multipart/form-data" asp-controller="WeatherForecast" asp-action="UploadFiles">
-    <span>Select Files:</span>
+    <span>Выбрать файлы:</span>
     <input type="file" name="files" multiple />
-    <input type="submit" value="Upload" />
+    <input type="submit" value="Загрузить" />
     <br/>
     <h3>@ViewData["uploadStatus"]</h3>
 </form>
