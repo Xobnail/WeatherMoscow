@@ -7,8 +7,16 @@ using WeatherMoscow.Domain.Entities;
 
 namespace WeatherMoscow.Application;
 
+/// <summary>
+/// Contains methods to extract data from excel file.
+/// </summary>
 public class ExcelDataExtractor : IDataExtractor
 {
+    /// <summary>
+    /// Extract data from multiple files.
+    /// </summary>
+    /// <param name="files">Files to extract data from.</param>
+    /// <returns>A list of weather forecasts.</returns>
     public List<WeatherForecast> Extract(IFormFileCollection files)
     {
         var weatherForecasts = new List<WeatherForecast>();
@@ -21,6 +29,11 @@ public class ExcelDataExtractor : IDataExtractor
         return weatherForecasts;
     }
     
+    /// <summary>
+    /// Extracts data from one excel file to a list of weather forecasts.
+    /// </summary>
+    /// <param name="file">File to extract data from.</param>
+    /// <param name="weatherForecasts">The list of weather forecasts where you need to extract data.</param>
     private static void ExtractFromFileToList(IFormFile file, List<WeatherForecast> weatherForecasts)
     {
         var workbook = new XSSFWorkbook(file.OpenReadStream());
@@ -41,6 +54,11 @@ public class ExcelDataExtractor : IDataExtractor
         }
     }
 
+    /// <summary>
+    /// Maps weather forecast from cells to a list.
+    /// </summary>
+    /// <param name="weatherForecasts">The list of weather forecasts where you need to add data</param>
+    /// <param name="cells">Cells to extract from.</param>
     private static void MapWeatherForecast(List<WeatherForecast> weatherForecasts, List<ICell> cells)
     {
         weatherForecasts.Add(new WeatherForecast

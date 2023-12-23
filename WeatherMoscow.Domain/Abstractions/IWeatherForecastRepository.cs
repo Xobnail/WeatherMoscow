@@ -4,20 +4,22 @@ using WeatherMoscow.Domain.Entities;
 namespace WeatherMoscow.Domain.Abstractions;
 
 /// <summary>
-/// Repository for working with the 
+/// Repository for working with the weather forecast entity.
 /// </summary>
 public interface IWeatherForecastRepository
 {
     /// <summary>
-    /// Gets all Weather forecasts
+    /// Filters list of weather forecasts and gets one page of weather forecasts.
     /// </summary>
-    /// <returns>IEnumerable<WeatherForecast></returns>
+    /// <param name="monthFilter">Month filter.</param>
+    /// <param name="yearFilter">Year filter.</param>
+    /// <param name="page">Page number.</param>
+    /// <returns>Weather forecasts pagination view model.</returns>
     public Task<IndexViewModel> GetPageAsync(string monthFilter, string yearFilter, int page);
 
     /// <summary>
-    /// Load Weather forecasts
+    /// Loads Weather forecasts.
     /// </summary>
-    /// <param name="weatherForecasts">Forecast to load</param>
-    /// <returns>true if loaded, false if not</returns>
+    /// <param name="weatherForecasts">Forecast to load.</param>
     public Task LoadAsync(IFormFileCollection weatherForecasts);
 }

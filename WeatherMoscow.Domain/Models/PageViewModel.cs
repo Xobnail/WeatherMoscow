@@ -1,5 +1,8 @@
 ﻿namespace WeatherMoscow.Domain.Entities;
 
+/// <summary>
+/// Page info.
+/// </summary>
 public class PageViewModel
 {
     public int PageNumber { get; private set; }

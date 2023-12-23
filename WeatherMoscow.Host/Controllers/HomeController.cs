@@ -1,17 +1,16 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherMoscow.Host.Controllers;
 
+/// <summary>
+/// Home page controller.
+/// </summary>
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
+    /// <summary>
+    /// Gets home page.
+    /// </summary>
+    /// <returns>Home page.</returns>
     [HttpGet]
     public IActionResult Index()
     {

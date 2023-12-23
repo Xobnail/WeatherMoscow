@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Hosting;
 using WeatherMoscow.Domain.Abstractions;
 
 namespace WeatherMoscow.Host.Controllers;
 
+/// <summary>
+/// A controller for work with weather forecasts.
+/// </summary>
 public class WeatherForecastController : Controller
 {
     private readonly IWeatherForecastRepository _weatherForecastRepository;
@@ -13,6 +15,15 @@ public class WeatherForecastController : Controller
         _weatherForecastRepository = weatherForecastRepository;
     }
     
+    /// <summary>
+    /// Gets one page of weather forecasts.
+    /// </summary>
+    /// <param name="monthFilter">Month filter.</param>
+    /// <param name="currentMonthFilter">Current month filter.</param>
+    /// <param name="yearFilter">Year filter.</param>
+    /// <param name="currentYearFilter">Current year filter.</param>
+    /// <param name="page">Current page.</param>
+    /// <returns>A view for one page.</returns>
     [HttpGet]
     public async Task<IActionResult> Index(string? monthFilter, string currentMonthFilter, string? yearFilter, string currentYearFilter, int page = 1)
     {
@@ -39,12 +50,21 @@ public class WeatherForecastController : Controller
         return View(weatherForecasts);
     }
 
+    /// <summary>
+    /// Gets page to load weather forecasts data.
+    /// </summary>
+    /// <returns>A view to load data.</returns>
     [HttpGet]
     public IActionResult Insert()
     {
         return View();
     }
 
+    /// <summary>
+    /// Uploads excel files, which contains weather forecasts data.
+    /// </summary>
+    /// <param name="files">Files to load.</param>
+    /// <returns>The Insert view with status.</returns>
     [HttpPost]
     public async Task<IActionResult> UploadFiles(IFormFileCollection files)
     {

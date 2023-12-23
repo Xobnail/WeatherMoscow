@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace WeatherMoscow.Domain.Entities;
+﻿namespace WeatherMoscow.Domain.Entities;
 
 public class WeatherForecast
 {
